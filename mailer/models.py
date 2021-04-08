@@ -1,9 +1,4 @@
-#-*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 
 class Company(models.Model):
@@ -38,11 +33,10 @@ class Contact(models.Model):
         return orders
 
 
-@python_2_unicode_compatible
 class Order(models.Model):
     order_number = models.CharField(max_length=150)
-    company = models.ForeignKey(Company, related_name="orders")
-    contact = models.ForeignKey(Contact, related_name="orders")
+    company = models.ForeignKey(Company, related_name="orders", on_delete=models.SET_NULL)
+    contact = models.ForeignKey(Contact, related_name="orders", on_delete=models.SET_NULL)
     total = models.DecimalField(max_digits=18, decimal_places=9)
     order_date = models.DateTimeField(null=True, blank=True)
     # for internal use only
@@ -51,4 +45,4 @@ class Order(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "%s" % self.order_number
+        return str(self.order_number)
