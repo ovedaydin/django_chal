@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Company(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, null=True)
     bic = models.CharField(max_length=150, blank=True)
 
     def get_order_count(self):
