@@ -35,8 +35,8 @@ class Contact(models.Model):
 
 class Order(models.Model):
     order_number = models.CharField(max_length=150)
-    company = models.ForeignKey(Company, related_name="orders", on_delete=models.SET_NULL)
-    contact = models.ForeignKey(Contact, related_name="orders", on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, related_name="orders", on_delete=models.SET_NULL , null=True)
+    contact = models.ForeignKey(Contact, related_name="orders", on_delete=models.SET_NULL, null=True)
     total = models.DecimalField(max_digits=18, decimal_places=9)
     order_date = models.DateTimeField(null=True, blank=True)
     # for internal use only
