@@ -1,8 +1,11 @@
-#-*- coding: utf-8 -*-
-from django.conf.urls import include, url
 
-from mailer.views import IndexView
+
+from django.urls import path, include
+from . import views
+
 
 urlpatterns = [
-    url(r'^$', IndexView.as_view(), name="index"),
-]
+    path('',views.IndexView.as_view(), name='index'),
+    path('company/<int:pk>',views.company, name='company'),
+
+    ]
