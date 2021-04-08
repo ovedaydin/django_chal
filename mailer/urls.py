@@ -5,7 +5,8 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.IndexView.as_view(), name='index'),
+    path('old',views.IndexView.as_view(), name='index'),
     path('company/<int:pk>',views.company, name='company'),
+    path('<int:page>',views.main, name='main'),
 
     ]

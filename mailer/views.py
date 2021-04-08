@@ -23,8 +23,11 @@ def company(request,pk):
     "order_sum":company.get_order_sum(),
     "contacts": contact_list
     }
-    contact_list = {}
+
 
     context = {"company_list" : company_list_new}
     print(company_list_new)
     return JsonResponse(company_list_new)
+
+def main(request,page):
+    return render(request,'mailer/index-new.html')

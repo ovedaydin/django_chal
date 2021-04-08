@@ -7,6 +7,18 @@
 
 </head>
 <body>
-	
+
 </body>
+<script type="text/javascript">
+var paginate = window.location.pathname.substring(1)*100;
+for (var i = 0; i < paginate; i++) {
+  i++;
+  url = '/company/' + i;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+
+
+</script>
 </html>
