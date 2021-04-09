@@ -31,6 +31,8 @@ class Contact(models.Model):
         for order in self.orders.all():
             orders += 1
         return orders
+    def __str__(self):
+        return str(str(self.first_name) +" " +str(self.last_name))
 
 
 class Order(models.Model):

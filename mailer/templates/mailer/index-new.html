@@ -43,14 +43,14 @@ function arrows(data){
 	var left = document.getElementById("left");
 
 	var righthref = parseInt(page) + 1;
-	console.log(righthref);
 	var lefthref = page - 1;
 	right.href = righthref;
 	left.href = lefthref;
-	if(data.companyAmount/100 >= page){
+
+	if(data.companyAmount/100 !== parseInt(page)){
 		right.classList.remove("hidden");
 	}
-	if(page !== "1"){ 
+	if(page !== "1"){
 		left.classList.remove("hidden");
 	}
 	console.log(data);
