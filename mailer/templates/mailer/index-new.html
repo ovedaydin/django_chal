@@ -7,17 +7,135 @@
 
 </head>
 <body>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/index-new.css' %}">
+
+
+	<table id="new_table">
+		<tr><td>
+			<a href="" class="">&laquo;</a>
+			</td>
+			<td></td>
+			<td></td>
+			<td>
+				<a href="/2" class="">&raquo;</a>
+			</td>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Order Count</th>
+			<th>Order Sum</th>
+			<th>Select</th>
+		</tr>
+	</table>
 
 </body>
 <script type="text/javascript">
-var paginate = window.location.pathname.substring(1)*100;
-for (var i = 0; i < paginate; i++) {
-  i++;
+var page= window.location.pathname.substring(1);
+
+var table = document.getElementById("new_table");
+
+var i = (page-1)*100 +1;
+var b = page*100 +1;
+console.log(i);
+
+for (i; i < b; i++) {
   url = '/company/' + i;
   fetch(url)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => add(data, table,i));
 }
+
+function add(data, table,i){
+	var highlight = false;
+	var tr = document.createElement('tr');
+	tr.onmouseover=function(){light(data.id)};
+	tr.onmouseleave=function(){dark(data.id)};
+	tr.setAttribute("name", data.id);
+	table.appendChild(tr);
+	var td1 = document.createElement('td');
+	var text1 = document.createTextNode(data.name);
+	if (data.order_sum >= 50000){
+		td1.classList.add("OverFifty");
+		if(data.order_count >= 3){
+			highlight = true;
+		}
+	}else{
+		td1.classList.add("LessFifty");
+	}
+
+	td1.appendChild(text1);
+	tr.appendChild(td1);
+
+	var td2 = document.createElement('td');
+	var text2 = document.createTextNode(data.order_count);
+	td2.appendChild(text2);
+	tr.appendChild(td2);
+
+	var td3 = document.createElement('td');
+	var order_sum = (Math.round(data.order_sum * 100) / 100).toFixed(2);
+	var text3 = document.createTextNode(order_sum);
+	td3.appendChild(text3);
+	tr.appendChild(td3);
+
+	var td4 = document.createElement('td');
+	var check = document.createElement("INPUT");
+	check.setAttribute("type", "checkbox");
+	td4.appendChild(check);
+	tr.appendChild(td4);
+
+
+	addContact(data.contacts, table,data.id, highlight);
+
+}
+function addContact(contacts, table,id, highlight){
+
+	for(contact in contacts){
+		var tr = document.createElement('tr');
+		tr.onmouseover=function(){light(id)};
+		tr.onmouseleave=function(){dark(id)};
+		tr.setAttribute("name", id);
+		table.appendChild(tr);
+		var td1 = document.createElement('td');
+		tr.appendChild(td1);
+
+		var td2 = document.createElement('td');
+		var text2 = document.createTextNode(contact);
+		if (highlight === true){
+			td2.classList.add("OverFiftyThree");
+		}
+		td2.appendChild(text2);
+		tr.appendChild(td2);
+		var td3 = document.createElement('td');
+		var text3 = document.createTextNode("Orders: " + contacts[contact]);
+		td3.appendChild(text3);
+		tr.appendChild(td3);
+
+		var td4 = document.createElement('td');
+		tr.appendChild(td3);
+
+
+
+
+	}
+
+
+}
+
+function light(pk){
+          var all = document.getElementsByName(pk);
+          for (var i = 0; i < all.length; i++) {
+          all[i].classList.add("act");
+          }
+        }
+				function dark(pk){
+					var all = document.getElementsByName(pk);
+					for (var i = 0; i < all.length; i++) {
+					all[i].classList.remove("act");
+					}
+				}
+
+
+
 
 
 </script>
