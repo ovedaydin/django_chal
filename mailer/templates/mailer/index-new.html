@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
@@ -11,32 +11,58 @@
 
 
 	<table id="new_table">
-		<tr><td>
-			<a href="" class="">&laquo;</a>
-			</td>
-			<td></td>
-			<td></td>
-			<td>
-				<a href="/2" class="">&raquo;</a>
-			</td>
-		</tr>
-		<tr>
-			<th>Name</th>
-			<th>Order Count</th>
-			<th>Order Sum</th>
-			<th>Select</th>
-		</tr>
+		<thead>
+        <tr>
+          <td>
+            <a id = "left" href="" class="hidden">«</a>
+          </td>
+          <td></td>
+          <td></td>
+          <td  class="right">
+            <a id = "right" href="" class="hidden">»</a>
+          </td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <th>Order Count</th>
+          <th>Order Sum</th>
+          <th>Select</th>
+        </tr>
+      </thead>
 	</table>
 
 </body>
 <script type="text/javascript">
 var page= window.location.pathname.substring(1);
 
-var table = document.getElementById("new_table");
+fetch('companyAmount')
+	.then(response => response.json())
+	.then(data => arrows(data));
+function arrows(data){
+	var right = document.getElementById("right");
+	var left = document.getElementById("left");
+
+	var righthref = parseInt(page) + 1;
+	console.log(righthref);
+	var lefthref = page - 1;
+	right.href = righthref;
+	left.href = lefthref;
+	if(data.companyAmount/100 >= page){
+		right.classList.remove("hidden");
+	}
+	if(page !== "1"){ 
+		left.classList.remove("hidden");
+	}
+	console.log(data);
+}
+
+var tablemain = document.getElementById("new_table");
+var table = document.createElement('tbody');
+tablemain.appendChild(table);
 
 var i = (page-1)*100 +1;
 var b = page*100 +1;
-console.log(i);
+
 
 for (i; i < b; i++) {
   url = '/company/' + i;
@@ -111,7 +137,7 @@ function addContact(contacts, table,id, highlight){
 		tr.appendChild(td3);
 
 		var td4 = document.createElement('td');
-		tr.appendChild(td3);
+		tr.appendChild(td4);
 
 
 

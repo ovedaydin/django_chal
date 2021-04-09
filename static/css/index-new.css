@@ -1,25 +1,108 @@
+* {
+  font-family: sans-serif;
+  /* Change your font family */
+}
+
 body {
-  width: 1020px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 300px;
+  width: 95%;
+  margin-left: 2.5%;
+}
+
+@media (min-width: 1020px) {
+  body {
+    max-width: 1020px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body thead {
+  background-color: #2D527C;
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: #2D527C;
+}
+
+body thead a {
+  font-size: 3em;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+}
+
+body thead tr {
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+body thead .right a {
+  margin-left: 70%;
+  margin-right: 0;
+  width: 100%;
+  text-align: center;
 }
 
 body #new_table {
-  width: 1020px;
+  min-width: 300px;
+  border-collapse: collapse;
+  margin: 25px 0;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+body #new_table td, body #new_table th {
+  padding: 12px 15px;
+  font-size: 2.5em;
+}
+
+@media (min-width: 1020px) {
+  body #new_table td, body #new_table th {
+    font-size: 1em;
+  }
+}
+
+body #new_table input {
+  -webkit-transform: scale(4);
+          transform: scale(4);
+}
+
+@media (min-width: 1020px) {
+  body #new_table input {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+}
+
+body #new_table tbody {
+  width: 100%;
+}
+
+body #new_table tbody tr {
+  border-bottom: 1px solid #dddddd;
 }
 
 body #new_table .act .OverFifty {
-  background-color: green;
+  background-color: #437C45;
   color: white;
 }
 
 body #new_table .act .LessFifty {
-  background-color: orange;
+  background-color: #E55E26;
   color: white;
 }
 
 body #new_table .act .OverFiftyThree {
-  background-color: yellow;
+  background-color: #EE922A;
+}
+.hidden {
+display: none;
 }
 /*# sourceMappingURL=index-new.css.map */

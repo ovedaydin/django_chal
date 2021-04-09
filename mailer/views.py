@@ -13,7 +13,6 @@ class IndexView(ListView):
 
 def company(request,pk):
     company = Company.objects.get(pk=pk)
-    print(len(company.contacts.all()) + 1)
     company_list_new = {}
     contact_list = {}
 
@@ -30,9 +29,12 @@ def company(request,pk):
 
     return JsonResponse(company_list_new)
 
+def companyAmount(request):
+    return JsonResponse({"companyAmount":len(Company.objects.all())})
+
 def hundreadCompanies(request,pk):
     company = Company.objects.get(pk=pk)
-    print(len(company.contacts.all()) + 1)
+
     company_list_new = {}
     contact_list = {}
 
@@ -51,5 +53,6 @@ def hundreadCompanies(request,pk):
 
 def main(request,page):
     return render(request,'mailer/index-new.html')
+    
 def home(request):
     return redirect(main,1)
