@@ -13,4 +13,7 @@ Desktop:
 
 
 Mobile:
+
+
+
 ![mobile Gif](https://github.com/ovedaydin/django_chal/blob/1a3665aec14337030ee4b270d152bdcf28f02beb/mobile.gif)
